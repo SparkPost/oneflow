@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-masterBranch="master"
+masterBranch="main"
 
 if [[ "$1" = "--h" ]] ; then
    echo "Checks out latest commit on $masterBranch.";

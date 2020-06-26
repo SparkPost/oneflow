@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-masterBranch="master"
+masterBranch="main"
 
 ((!$#)) && echo No hotfix name, command ignored! && echo "  - git hotfix <version> <tag>" && exit 1
 

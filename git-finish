@@ -3,7 +3,7 @@ set -e
 
 # check to see if we are using a full-featured gitflow repo
 if git show-ref --quiet refs/heads/develop; then
-   masterBranch="master"
+   masterBranch="main"
 else
    masterBranch="develop"
 fi

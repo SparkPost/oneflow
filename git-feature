@@ -5,7 +5,7 @@ set -e
 if git show-ref --quiet refs/heads/develop; then
    masterBranch="develop"
 else
-   masterBranch="master"
+   masterBranch="main"
 fi
 
 ((!$#)) && echo No feature name, command ignored! && echo "  - git feature <name>" && exit 1
