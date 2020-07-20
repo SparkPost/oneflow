@@ -3,18 +3,22 @@ set -e
 
 # check to see if we are using a full-featured gitflow repo
 if git show-ref --quiet refs/heads/develop; then
-   masterBranch="develop"
+	masterBranch="develop"
 else
-   masterBranch="main"
+	if git show-ref --quiet refs/heads/main; then
+		masterBranch="main"
+	else
+		masterBranch="master"
+	fi
 fi
 
 ((!$#)) && echo No feature name, command ignored! && echo "  - git feature <name>" && exit 1
 
 if [[ "$1" = "--h" ]] ; then
-   echo "Creates a feature branch at the latest commit on $masterBranch and checks it out.";
-   echo "Feature branches will create a pull request to $masterBranch when finished."
-   echo "  - git feature <name>";
-   exit 1;
+	echo "Creates a feature branch at the latest commit on $masterBranch and checks it out.";
+	echo "Feature branches will create a pull request to $masterBranch when finished."
+	echo "  - git feature <name>";
+	exit 1;
 fi
 
 if ! [ -d .git ] ; then
@@ -26,9 +30,9 @@ fi
 
 
 if git show-ref --quiet refs/heads/feature/$1; then
-  echo Switching to existing feature $1
-  git checkout feature/$1
+	echo Switching to existing feature $1
+	git checkout feature/$1
 else
-  echo Starting feature $1
-  git checkout -b feature/$1 $masterBranch
+	echo Starting feature $1
+	git checkout -b feature/$1 $masterBranch
 fi
